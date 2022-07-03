@@ -1,0 +1,9 @@
+.ticket { 
+    margin: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    .ticket { 
+        margin: 20px auto;
+    }
+  }

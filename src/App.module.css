@@ -1,0 +1,12 @@
+
+.Tickets { 
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .Tickets { 
+        display: grid;
+        grid-template-columns: auto;
+    }
+  }
