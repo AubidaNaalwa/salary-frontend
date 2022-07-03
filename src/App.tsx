@@ -5,6 +5,7 @@ import {  saveTicket, deleteTicketReq } from './api/feed';
 
 import { Ticket } from './components/Ticket';
 import style from './App.module.css'
+import { Login } from './components/login';
 
 
 type iTicket = { 
@@ -32,17 +33,16 @@ function App() {
      setTickets(tickets)
   }
 
-  const sigIn = async() => { 
-    const token = await login("aubidanaalwa7@gmail.com", "qwasvgsdjhndsrnsfv")
+  const signIn = async(username: string, password: string) => { 
+    const token = await login(username, password)
     setToken(token);
     const tickets = await feed(token)
     setTickets(tickets)
   }
 
-  useEffect( ()=> { 
-    sigIn()
-  }, [])
-
+  if(!token){ 
+    return <Login signIn={signIn}/>
+  }
   return (
     <>
         <div>

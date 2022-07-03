@@ -9,6 +9,8 @@ export const login = async (email:string, password:string) => {
         return res.data.token || '';
     } catch (error) {
         console.error("fail login ")
+        
+        return ''
     }
 } 
 

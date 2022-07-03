@@ -17,7 +17,7 @@ export const Ticket:FC<Props>= ({porpuse, total, description, deleteTicket, _id}
 
     return(
         <div className= {style.ticket}>
-                        <div>
+            <div>
             id: {_id}
             </div>
             <div>
