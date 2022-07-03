@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { feed } from './api/feed';
 import { login } from './api/user';
-import {  saveTicket } from './api/feed';
+import {  saveTicket, deleteTicketReq } from './api/feed';
 
 import { Ticket } from './components/Ticket';
 import style from './App.module.css'
@@ -24,6 +24,12 @@ function App() {
     await saveTicket(token, {porpuse, total, description})
     const tickets = await feed(token)
     setTickets(tickets)
+  }
+
+  const deleteTicket = async (ticketId: string) => {
+     await deleteTicketReq(token, ticketId)
+     const tickets = await feed(token)
+     setTickets(tickets)
   }
 
   const sigIn = async() => { 
@@ -49,8 +55,8 @@ function App() {
           <button onClick={appendTicket}> save</button>
         </div>
         <div className={style.Tickets}>
-        { tickets.map(ticket => <Ticket key={ticket._id} {...ticket} />) }
-     </div>
+        { tickets.map(ticket => <Ticket key={ticket._id} {...ticket} deleteTicket={deleteTicket}/>) }
+        </div>
     </>
   );
 }
