@@ -17,7 +17,7 @@ type iTicket = {
 function App() {
   const [tickets, setTickets] = useState<iTicket[]>([])
   const [porpuse, setPorpuse] =  useState<string>('')
-  const [total, setTotal] =  useState<number>(.0)
+  const [total, setTotal] =  useState<number>(0)
   const [description, setDescription] =  useState<string>('')
   const [token, setToken] = useState<string>('')
 
@@ -76,7 +76,7 @@ function App() {
           total amount: {tickets.reduce((partialSum, ticket) => partialSum + ticket.total, 0)} 
         </div>
         <div className={style.Tickets}>
-        { tickets.map(ticket => <Ticket key={ticket._id} {...ticket} deleteTicket={deleteTicket}/>) }
+        { tickets.map(ticket => <Ticket key={ticket._id} {...ticket} deleteTicket={deleteTicket} />) }
         </div>
     </>
   );
