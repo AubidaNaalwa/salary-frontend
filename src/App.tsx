@@ -23,26 +23,43 @@ function App() {
 
   const appendTicket = async () => { 
     await saveTicket(token, {porpuse, total, description})
-    const tickets = await feed(token)
-    setTickets(tickets)
+    await getFeed()
   }
 
   const deleteTicket = async (ticketId: string) => {
+    if(!confirm("are you sure want to delete the ticket ? ")){ 
+      return
+    }
      await deleteTicketReq(token, ticketId)
-     const tickets = await feed(token)
-     setTickets(tickets)
+     await getFeed()
   }
 
   const signIn = async(username: string, password: string) => { 
     const token = await login(username, password)
+    if(!token) { 
+      return alert("error with signing in ")
+    }
+    localStorage.setItem('token', token)
     setToken(token);
-    const tickets = await feed(token)
-    setTickets(tickets)
   }
+
+  const getFeed =async() => { 
+    const token = localStorage.getItem('token')
+    if(token) { 
+      setToken(token);
+      const tickets = await feed(token)
+      setTickets(tickets)
+    }
+  }
+
+  useEffect(()=> {
+    getFeed()
+  },[])
 
   if(!token){ 
     return <Login signIn={signIn}/>
   }
+
   return (
     <>
         <div>
@@ -53,6 +70,9 @@ function App() {
           <span> description : </span>
           <input type="text" value={description} onChange= {({target}) => setDescription(target.value)} />
           <button onClick={appendTicket}> save</button>
+        </div>
+        <div>
+          total amount: {tickets.reduce((partialSum, ticket) => partialSum + ticket.total, 0)} 
         </div>
         <div className={style.Tickets}>
         { tickets.map(ticket => <Ticket key={ticket._id} {...ticket} deleteTicket={deleteTicket}/>) }

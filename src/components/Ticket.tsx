@@ -11,7 +11,7 @@ type Props = {
 
 export const Ticket:FC<Props>= ({porpuse, total, description, deleteTicket, _id}) => {
     const updateTicket =() => { 
-
+        
     }
 
 
