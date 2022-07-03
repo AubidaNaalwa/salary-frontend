@@ -41,6 +41,7 @@ function App() {
     }
     localStorage.setItem('token', token)
     setToken(token);
+    await getFeed()
   }
 
   const getFeed =async() => { 
