@@ -6,6 +6,7 @@ import {  saveTicket, deleteTicketReq } from './api/feed';
 import { Ticket } from './components/Ticket';
 import style from './App.module.css'
 import { Login } from './components/login';
+import { getWithExpiry, setWithExpiry } from './libs/storage';
 
 
 type iTicket = { 
@@ -39,13 +40,13 @@ function App() {
     if(!token) { 
       return alert("error with signing in ")
     }
-    localStorage.setItem('token', token)
+    setWithExpiry('token', token, 2)
     setToken(token);
     await getFeed()
   }
 
   const getFeed =async() => { 
-    const token = localStorage.getItem('token')
+    const token = getWithExpiry('token')
     if(token) { 
       setToken(token);
       const tickets = await feed(token)
