@@ -39,3 +39,16 @@ export const deleteTicketReq = async (token: string, ticketId: string)=> {
         return []
     }
 }
+
+export const loadUserDetails = async (token: string) => { 
+    try {
+        axios.defaults.baseURL = API_URL
+        const res2 = await axios.post(`feed/user-details` ,{} ,{params: {
+            token
+        }})
+        return res2.data.user
+    } catch (error) {
+        console.error("load user error")
+        return ''
+    }
+}   

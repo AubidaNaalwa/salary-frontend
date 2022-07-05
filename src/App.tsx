@@ -7,6 +7,7 @@ import { Ticket } from './components/Ticket';
 import style from './App.module.css'
 import { Login } from './components/login';
 import { getWithExpiry, setWithExpiry } from './libs/storage';
+import { NavBar } from './components/NavBar';
 
 
 type iTicket = { 
@@ -64,6 +65,7 @@ function App() {
 
   return (
     <>
+        <NavBar token={token} setToken={setToken}/>
         <div>
           <span>porpuse : </span>
           <input type="text" value={porpuse} onChange= {({target}) => setPorpuse(target.value)}/>

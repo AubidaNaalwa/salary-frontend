@@ -5,7 +5,6 @@ import reportWebVitals from './reportWebVitals';
 import {Targets} from './components/targets/index'
 import {Transaction} from './components/transaction/index'
 import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
-import { NavBar } from './components/NavBar';
 
 
 const root = ReactDOM.createRoot(
@@ -15,7 +14,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Router>
-      <NavBar />
       <Routes>
         <Route path="/" element={<App />}/>
         <Route path="/monthly" element={<Targets />}/>
