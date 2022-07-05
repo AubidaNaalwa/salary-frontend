@@ -45,7 +45,7 @@ function App() {
     await getFeed()
   }
 
-  const getFeed =async() => { 
+  const getFeed =async() => {
     const token = getWithExpiry('token')
     if(token) { 
       setToken(token);
