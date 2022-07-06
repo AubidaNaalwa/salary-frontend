@@ -8,6 +8,7 @@ import style from './App.module.css'
 import { Login } from './components/login';
 import { getWithExpiry, setWithExpiry } from './libs/storage';
 import { NavBar } from './components/NavBar';
+import { Chart } from './components/chart';
 
 
 type iTicket = { 
@@ -80,6 +81,7 @@ function App() {
         </div>
         <div className={style.Tickets}>
         { tickets.map(ticket => <Ticket key={ticket._id} {...ticket} deleteTicket={deleteTicket} />) }
+        <Chart />
         </div>
     </>
   );
