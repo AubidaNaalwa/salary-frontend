@@ -1,3 +1,5 @@
 .signIn{ 
+    height: 100vh;
     text-align: center;
+    margin: 40vh auto auto;
 }
