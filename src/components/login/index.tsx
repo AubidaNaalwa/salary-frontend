@@ -23,7 +23,7 @@ export const Login:FC<Props>= ({signIn}) => {
                 <span>password : </span>
                 <input type="password" value={password} onChange= {({target}) => setPassword(target.value)}/>
             </div>
-            <button onClick={()=>{signIn(username, password); setLoading(true)}}> login</button>
+            <button onClick={()=>{signIn(username, password); setLoading(true)}}>login</button>
         </div>
     )
 } 
