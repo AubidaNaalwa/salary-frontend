@@ -25,8 +25,13 @@ function App() {
   const [token, setToken] = useState<string>('')
 
   const appendTicket = async () => { 
+    setPorpuse('');
+    setTotal(0);
+    setDescription('');
     await saveTicket(token, {porpuse, total, description})
     await getFeed()
+
+
   }
 
   const deleteTicket = async (ticketId: string) => {
@@ -67,22 +72,19 @@ function App() {
   return (
     <>
         <NavBar token={token} setToken={setToken}/>
-        <div>
-          <span>porpuse : </span>
-          <input type="text" value={porpuse} onChange= {({target}) => setPorpuse(target.value)}/>
-          <span > total : </span>
-          <input type="number" min="0" value={total} onChange= {({target}) => setTotal(parseFloat(target.value))} />
-          <span> description : </span>
-          <input type="text" value={description} onChange= {({target}) => setDescription(target.value)} />
-          <button onClick={appendTicket}> save</button>
+        <div className={style.inputs}>
+          <input type="text" value={porpuse} onChange= {({target}) => setPorpuse(target.value)} placeholder="purpose" />
+          <input type="number" min="0" value={total} onChange= {({target}) => setTotal(parseFloat(target.value))} placeholder="total" />
+          <input type="text" value={description} onChange= {({target}) => setDescription(target.value)} placeholder="description" />
+          <button onClick={appendTicket} disabled={!(porpuse && porpuse)} > save</button>
         </div>
         <div>
-          total amount: {tickets.reduce((partialSum, ticket) => partialSum + ticket.total, 0)} 
+          total amount: {tickets.reduce((partialSum, ticket) => partialSum + ticket.total, 0)} / 2000 shekels
         </div>
         <div className={style.Tickets}>
         { tickets.map(ticket => <Ticket key={ticket._id} {...ticket} deleteTicket={deleteTicket} />) }
-        <Chart />
         </div>
+        <Chart />
     </>
   );
 }
