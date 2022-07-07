@@ -66,7 +66,7 @@ function App() {
   },[])
 
   if(!token){ 
-    return <Login signIn={signIn}/>
+    return <Login signIn={signIn} />
   }
 
   return (

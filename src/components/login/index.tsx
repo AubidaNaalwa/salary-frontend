@@ -1,4 +1,5 @@
 import React, { FC, useState } from "react";
+import { Loader } from "../loader";
 import style from './index.module.css'
 
 type Props ={ 
@@ -7,6 +8,10 @@ type Props ={
 export const Login:FC<Props>= ({signIn}) => {
     const [username, setUsername] =  useState<string>('')
     const [password, setPassword] =  useState<string>('')
+    const [loading,  setLoading] = useState<boolean>(false);
+    if(loading) { 
+        return <Loader />
+    }
     return(
         <div className={style.signIn}>
             <span>login </span>
@@ -18,7 +23,7 @@ export const Login:FC<Props>= ({signIn}) => {
                 <span>password : </span>
                 <input type="password" value={password} onChange= {({target}) => setPassword(target.value)}/>
             </div>
-            <button onClick={()=>{signIn(username, password)}}> login</button>
+            <button onClick={()=>{signIn(username, password); setLoading(true)}}> login</button>
         </div>
     )
 } 
